@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPills, FaUsers, FaShoppingCart, FaDollarSign, FaFileAlt, FaCog, FaChartBar } from 'react-icons/fa';
+import { FaPills, FaUsers, FaShoppingCart, FaDollarSign, FaFileAlt, FaChartBar } from 'react-icons/fa';
 
 const Dashboard: React.FC = () => {
   return (
@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
           {[
             { icon: <FaShoppingCart />, value: "239", label: "Quantity of Sales", bgColor: "bg-blue-500" },
