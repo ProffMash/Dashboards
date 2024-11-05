@@ -1,152 +1,122 @@
 import React from 'react';
-import { FaPills, FaUsers, FaShoppingCart, FaDollarSign, FaFileAlt,  FaChartBar } from 'react-icons/fa';
+import { FaPills, FaUsers, FaShoppingCart, FaDollarSign, FaFileAlt, FaCog, FaChartBar } from 'react-icons/fa';
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
 
-      <main className="flex-1 p-4 bg-gray-100">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-xl font-semibold">Dashboard</h1>
+      <main className="flex-1 p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
           <div className="flex items-center space-x-4">
             <input
               type="text"
               placeholder="Search"
-              className="p-2 border rounded-md outline-none"
+              className="p-2 pl-4 bg-white border border-gray-300 rounded-full shadow-sm focus:ring focus:ring-blue-300 focus:outline-none transition duration-200"
             />
-            <div className="w-8 h-8 bg-blue-500 rounded-full"></div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-          <div className="bg-blue-500 text-white p-4 rounded-lg shadow flex items-center space-x-3">
-            <FaShoppingCart className="text-2xl" />
-            <div>
-              <p>239</p>
-              <p className="text-sm">Quantity of Sales</p>
-            </div>
-          </div>
-          <div className="bg-green-500 text-white p-4 rounded-lg shadow flex items-center space-x-3">
-            <FaDollarSign className="text-2xl" />
-            <div>
-              <p>$19,989.00</p>
-              <p className="text-sm">Revenue</p>
-            </div>
-          </div>
-          <div className="bg-yellow-500 text-white p-4 rounded-lg shadow flex items-center space-x-3">
-            <FaChartBar className="text-2xl" />
-            <div>
-              <p>$5,999.00</p>
-              <p className="text-sm">Profit</p>
-            </div>
-          </div>
-          <div className="bg-orange-500 text-white p-4 rounded-lg shadow flex items-center space-x-3">
-            <FaPills className="text-2xl" />
-            <div>
-              <p>$96,000.00</p>
-              <p className="text-sm">Value of Stock</p>
-            </div>
-          </div>
-          <div className="bg-pink-500 text-white p-4 rounded-lg shadow flex items-center space-x-3">
-            <FaDollarSign className="text-2xl" />
-            <div>
-              <p>$3,449.00</p>
-              <p className="text-sm">Total Due</p>
-            </div>
-          </div>
-          <div className="bg-purple-500 text-white p-4 rounded-lg shadow flex items-center space-x-3">
-            <FaUsers className="text-2xl" />
-            <div>
-              <p>39</p>
-              <p className="text-sm">Total Customers</p>
-            </div>
-          </div>
-          <div className="bg-red-500 text-white p-4 rounded-lg shadow flex items-center space-x-3">
-            <FaFileAlt className="text-2xl" />
-            <div>
-              <p>11</p>
-              <p className="text-sm">Total Suppliers</p>
-            </div>
-          </div>
-          <div className="bg-teal-500 text-white p-4 rounded-lg shadow flex items-center space-x-3">
-            <FaUsers className="text-2xl" />
-            <div>
-              <p>4</p>
-              <p className="text-sm">Total Users</p>
+            <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center shadow-lg text-white font-semibold">
+              JD
             </div>
           </div>
         </div>
+        
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+          {[
+            { icon: <FaShoppingCart />, value: "239", label: "Quantity of Sales", bgColor: "bg-blue-500" },
+            { icon: <FaDollarSign />, value: "$19,989.00", label: "Revenue", bgColor: "bg-green-500" },
+            { icon: <FaChartBar />, value: "$5,999.00", label: "Profit", bgColor: "bg-yellow-500" },
+            { icon: <FaPills />, value: "$96,000.00", label: "Value of Stock", bgColor: "bg-orange-500" },
+            { icon: <FaDollarSign />, value: "$3,449.00", label: "Total Due", bgColor: "bg-pink-500" },
+            { icon: <FaUsers />, value: "39", label: "Total Customers", bgColor: "bg-purple-500" },
+            { icon: <FaFileAlt />, value: "11", label: "Total Suppliers", bgColor: "bg-red-500" },
+            { icon: <FaUsers />, value: "4", label: "Total Users", bgColor: "bg-teal-500" },
+          ].map((stat, index) => (
+            <div
+              key={index}
+              className={`${stat.bgColor} text-white p-5 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out`}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="text-3xl">{stat.icon}</div>
+                <div>
+                  <p className="text-lg font-semibold">{stat.value}</p>
+                  <p className="text-sm">{stat.label}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Tables for Today's Sales, Expenses, and Reports */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Today's Sale */}
-          <div className="bg-blue-200 p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold mb-2 flex items-center">
-              <FaShoppingCart className="mr-2" /> Today's Sale
+          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+            <h2 className="text-lg font-semibold mb-4 flex items-center text-gray-800">
+              <FaShoppingCart className="mr-2 text-blue-500" /> Today's Sale
             </h2>
-            <table className="w-full text-sm">
+            <table className="w-full text-sm text-gray-700">
               <thead>
                 <tr>
-                  <th className="text-left">Reference</th>
-                  <th className="text-left">Quantity</th>
-                  <th className="text-left">Amount ($)</th>
+                  <th className="text-left py-2">Reference</th>
+                  <th className="text-left py-2">Quantity</th>
+                  <th className="text-left py-2">Amount ($)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>000003</td>
-                  <td>4</td>
-                  <td>155.00</td>
+                  <td className="py-1">000003</td>
+                  <td className="py-1">4</td>
+                  <td className="py-1">155.00</td>
                 </tr>
                 <tr>
-                  <td>000004</td>
-                  <td>3</td>
-                  <td>130.00</td>
+                  <td className="py-1">000004</td>
+                  <td className="py-1">3</td>
+                  <td className="py-1">130.00</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Today's Expense */}
-          <div className="bg-teal-200 p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold mb-2 flex items-center">
-              <FaDollarSign className="mr-2" /> Today's Expense
+          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+            <h2 className="text-lg font-semibold mb-4 flex items-center text-gray-800">
+              <FaDollarSign className="mr-2 text-teal-500" /> Today's Expense
             </h2>
-            <table className="w-full text-sm">
+            <table className="w-full text-sm text-gray-700">
               <thead>
                 <tr>
-                  <th className="text-left">Description</th>
-                  <th className="text-left">Amount ($)</th>
+                  <th className="text-left py-2">Description</th>
+                  <th className="text-left py-2">Amount ($)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Food</td>
-                  <td>250.00</td>
+                  <td className="py-1">Food</td>
+                  <td className="py-1">250.00</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Today's Report */}
-          <div className="bg-pink-200 p-4 rounded-lg shadow">
-            <h2 className="text-lg font-semibold mb-2 flex items-center">
-              <FaFileAlt className="mr-2" /> Today's Report
+          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+            <h2 className="text-lg font-semibold mb-4 flex items-center text-gray-800">
+              <FaFileAlt className="mr-2 text-pink-500" /> Today's Report
             </h2>
-            <table className="w-full text-sm">
+            <table className="w-full text-sm text-gray-700">
               <thead>
                 <tr>
-                  <th className="text-left">Type</th>
-                  <th className="text-left">Amount ($)</th>
+                  <th className="text-left py-2">Type</th>
+                  <th className="text-left py-2">Amount ($)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Sales</td>
-                  <td>323.00</td>
+                  <td className="py-1">Sales</td>
+                  <td className="py-1">323.00</td>
                 </tr>
                 <tr>
-                  <td>Expenses</td>
-                  <td>250.00</td>
+                  <td className="py-1">Expenses</td>
+                  <td className="py-1">250.00</td>
                 </tr>
               </tbody>
             </table>
