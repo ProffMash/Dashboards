@@ -1,17 +1,48 @@
 import React from 'react';
 import { FaPills, FaUsers, FaShoppingCart, FaDollarSign, FaFileAlt, FaChartBar } from 'react-icons/fa';
+import { Line, Bar } from 'react-chartjs-2';
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
 
 const Dashboard: React.FC = () => {
+  const salesData = {
+    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    datasets: [
+      {
+        label: 'Sales ($)',
+        data: [150, 200, 250, 180, 220],
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 2,
+        tension: 0.4, // smooth line
+        fill: true,
+      },
+    ],
+  };
+
+  const expenseData = {
+    labels: ['Food', 'Transport', 'Office Supplies', 'Utilities'],
+    datasets: [
+      {
+        label: 'Expenses ($)',
+        data: [250, 120, 80, 60],
+        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <div className="flex flex-col md:flex-row h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
-
       <main className="flex-1 p-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
           <div className="flex items-center space-x-4">
             <input
               type="text"
-              placeholder="Search"  
+              placeholder="Search"
               className="p-2 pl-4 bg-white border border-gray-300 rounded-full shadow-sm focus:ring focus:ring-blue-300 focus:outline-none transition duration-200"
             />
             <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center shadow-lg text-white font-semibold">
@@ -46,80 +77,18 @@ const Dashboard: React.FC = () => {
           ))}
         </div>
 
-        {/* Tables for Today's Sales, Expenses, and Reports */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Today's Sale */}
-          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-            <h2 className="text-lg font-semibold mb-4 flex items-center text-gray-800">
-              <FaShoppingCart className="mr-2 text-blue-500" /> Today's Sale
-            </h2>
-            <table className="w-full text-sm text-gray-700">
-              <thead>
-                <tr>
-                  <th className="text-left py-2">Reference</th>
-                  <th className="text-left py-2">Quantity</th>
-                  <th className="text-left py-2">Amount ($)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="py-1">000003</td>
-                  <td className="py-1">4</td>
-                  <td className="py-1">155.00</td>
-                </tr>
-                <tr>
-                  <td className="py-1">000004</td>
-                  <td className="py-1">3</td>
-                  <td className="py-1">130.00</td>
-                </tr>
-              </tbody>
-            </table>
+        {/* Animated Charts */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {/* Sales Line Chart */}
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-lg font-semibold mb-4 text-gray-800">Weekly Sales</h2>
+            <Line data={salesData} options={{ responsive: true, animation: { duration: 1000 } }} />
           </div>
 
-          {/* Today's Expense */}
-          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-            <h2 className="text-lg font-semibold mb-4 flex items-center text-gray-800">
-              <FaDollarSign className="mr-2 text-teal-500" /> Today's Expense
-            </h2>
-            <table className="w-full text-sm text-gray-700">
-              <thead>
-                <tr>
-                  <th className="text-left py-2">Description</th>
-                  <th className="text-left py-2">Amount ($)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="py-1">Food</td>
-                  <td className="py-1">250.00</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          {/* Today's Report */}
-          <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
-            <h2 className="text-lg font-semibold mb-4 flex items-center text-gray-800">
-              <FaFileAlt className="mr-2 text-pink-500" /> Today's Report
-            </h2>
-            <table className="w-full text-sm text-gray-700">
-              <thead>
-                <tr>
-                  <th className="text-left py-2">Type</th>
-                  <th className="text-left py-2">Amount ($)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="py-1">Sales</td>
-                  <td className="py-1">323.00</td>
-                </tr>
-                <tr>
-                  <td className="py-1">Expenses</td>
-                  <td className="py-1">250.00</td>
-                </tr>
-              </tbody>
-            </table>
+          {/* Expenses Bar Chart */}
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-lg font-semibold mb-4 text-gray-800">Expense Breakdown</h2>
+            <Bar data={expenseData} options={{ responsive: true, animation: { duration: 1000 } }} />
           </div>
         </div>
       </main>
