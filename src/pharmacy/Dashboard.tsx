@@ -11,7 +11,7 @@ const Dashboard: React.FC = () => {
           <div className="flex items-center space-x-4">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search"  
               className="p-2 pl-4 bg-white border border-gray-300 rounded-full shadow-sm focus:ring focus:ring-blue-300 focus:outline-none transition duration-200"
             />
             <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center shadow-lg text-white font-semibold">
