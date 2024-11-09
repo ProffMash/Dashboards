@@ -1,7 +1,9 @@
 import React from 'react';
 import { FaSave, FaTimes, FaPrescriptionBottle, FaCalendarAlt, FaTags, FaBox, FaDollarSign, FaBuilding } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const MedicineForm: React.FC = () => {
+    const navigate = useNavigate();
   return (
     <div className="p-10 bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen flex justify-center items-center">
       <div className="w-full max-w-2xl">
@@ -76,9 +78,10 @@ const MedicineForm: React.FC = () => {
 
           {/* Buttons */}
           <div className="flex justify-end space-x-4 pt-4">
-            <button
-              type="reset"
-              className="flex items-center bg-gray-500 text-white py-2 px-5 rounded-full shadow-md hover:bg-gray-600 transition duration-300 transform hover:scale-105"
+            <button 
+            type="button"
+            onClick={() => navigate('/medicine')}
+            className="flex items-center bg-gray-500 text-white py-2 px-5 rounded-full shadow-md hover:bg-gray-600 transition duration-300 transform hover:scale-105"
             >
               <FaTimes />
               <span className="ml-2">Cancel</span>
