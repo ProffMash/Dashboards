@@ -78,14 +78,16 @@ const MedicineForm: React.FC = () => {
 
           {/* Buttons */}
           <div className="flex justify-end space-x-4 pt-4">
-            <button 
-            type="button"
-            onClick={() => navigate('/medicine')}
-            className="flex items-center bg-gray-500 text-white py-2 px-5 rounded-full shadow-md hover:bg-gray-600 transition duration-300 transform hover:scale-105"
-            >
-              <FaTimes />
-              <span className="ml-2">Cancel</span>
-            </button>
+          <button
+  type="button"
+  onClick={() => {
+    navigate('/medicine');
+  }}
+  className="flex items-center bg-gray-500 text-white py-2 px-5 rounded-full shadow-md hover:bg-gray-600 transition duration-300 transform hover:scale-105"
+>
+  <FaTimes />
+  <span className="ml-2">Cancel</span>
+</button>
             <button
               type="submit"
               className="flex items-center bg-green-600 text-white py-2 px-5 rounded-full shadow-md hover:bg-green-700 transition duration-300 transform hover:scale-105"
