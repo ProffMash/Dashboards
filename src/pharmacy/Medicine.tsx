@@ -1,7 +1,9 @@
 import React from 'react';
 import { FaPlus, FaSearch, FaEdit, FaTrash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const MedicineInventory: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
       <h2 className="text-3xl font-bold text-blue-800 mb-6">Medicine Inventory</h2>
@@ -17,7 +19,9 @@ const MedicineInventory: React.FC = () => {
             <FaSearch />
           </button>
         </div>
-        <button className="flex items-center space-x-2 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300">
+        <button 
+        onClick={() => navigate('/medicine-form')}
+        className="flex items-center space-x-2 bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-300">
           <FaPlus />
           <span>Add Medicine</span>
         </button>
